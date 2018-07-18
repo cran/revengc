@@ -1,4 +1,4 @@
-a9a3ee4e7a6b79eb6cd13658b6b0dd9a *DESCRIPTION
+7841029424cd8d45df5f82111b376dd6 *DESCRIPTION
 0078b112a6b227f8c531b113ac8d1f3f *LICENSE
 e88d963e5c73c11f4ab0fdd65fd6875e *NAMESPACE
 4afd4ce85c8c619b65c930093983c248 *R/estimated_lambda_function.R
@@ -6,12 +6,12 @@ e88d963e5c73c11f4ab0fdd65fd6875e *NAMESPACE
 e650f1e5e56c876498729ac35cac8c4f *R/poisson_trunc_functions.R
 fe21b197fea1ea351534c55a47747e7f *R/rec_function.R
 b6df9c46ca5a5a9d36770044e859b451 *R/seedmatrix_function.R
-f420116bb51b23f599b314e7a112c63a *README.md
+78909d5a02dcaba2c411c336695d4518 *README.md
 d66a5c68d9aee39ae640995a75a7c8fb *build/vignette.rds
 c07b0b9b235e9e9466d54fa68c91511a *data/contingency_table_example.RData
 5a14b30d11823fbca8b44ddd29916fe6 *data/univariate_table_example.RData
-dffd52d92cacc94e965dc19fe1a71e39 *inst/doc/duchscherer-stewart-urban.ltx
-c7bc3a4aa136e8fa4caad79425c11ab1 *inst/doc/duchscherer-stewart-urban.pdf
+b81907a9e3f5fa5f38ed52aec1908a45 *inst/doc/duchscherer-stewart-urban.ltx
+8f7034f691ab9f4794aa67799ca929cb *inst/doc/duchscherer-stewart-urban.pdf
 72983d2233726067fb58212217287a4b *man/column_marginal.Rd
 7c54382f2da720e2e9c53da33aba1659 *man/contingency_table_example.Rd
 5e7b3311cf862761da6f033de1c168df *man/dqpois_trunc.Rd
@@ -21,5 +21,5 @@ fa9c845ce326e0bbce6c60a9c6c516ab *man/row_marginal.Rd
 d17c63317e56f3378c04684f8baa67a8 *man/seedmatrix.Rd
 5f091f4e4f2cc7812333939a905100ee *man/univariate_table_example.Rd
 8722a6e5b8af86723536233b3344eac1 *vignettes/duchscherer-stewart-urban.bib
-dffd52d92cacc94e965dc19fe1a71e39 *vignettes/duchscherer-stewart-urban.ltx
+b81907a9e3f5fa5f38ed52aec1908a45 *vignettes/duchscherer-stewart-urban.ltx
 bb82a3794836c76741eb889c2b77da4e *vignettes/workflow_overview.png
