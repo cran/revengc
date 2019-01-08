@@ -7,7 +7,7 @@ seedmatrix(censoredtable, Xlowerbound, Xupperbound, Ylowerbound, Yupperbound)
 \arguments{
 \item{censoredtable}{A censored contingency table.  A data.frame and matrix are accepted table classes.  See Details section for formatting. }
 
-\item{Xlowerbound}{A numeric class value to represent a lower bound for the row values.  The value must strictly be >= 0 and cannot be greater than the lowest row category value (e.g. the lower bound cannot be 6 if a table has '>= 5' as a row category value)}
+\item{Xlowerbound}{A numeric class value to represent a lower bound for the row values.  The value must strictly be >= 0 and cannot be greater than the lowest row category value (e.g. the lower bound cannot be 6 if a table has '< 5' as a row category value)}
 
 \item{Xupperbound}{A numeric class value to represent an upper bound for the row values.  The value cannot be less than the highest row category value (e.g. the upper bound cannot be 90 if a table has '> 100' as a row category value).}
 

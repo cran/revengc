@@ -1,7 +1,7 @@
 
 # revengc: An R package to reverse engineer decoupled and censored data
 
-Decoupled (e.g. separate averages) and censored (e.g. > 100 species) variables are continually reported by many well-established organizations (e.g. World Health Organization (WHO), Centers for Disease Control and Prevention (CDC), World Bank, and various national censuses).  The challenge therefore is to infer what the original data could have been given summarized information.  We present an R package that reverse engineers decoupled and/or censored data with two main functions.  The cnbinom.pars() function estimates the average and dispersion parameter of a censored univariate frequency table.  The rec() function reverse engineers summarized data into an uncensored bivariate table of probabilities.
+Decoupled (e.g. separate averages) and censored (e.g. > 100 species) variables are continually reported by many well-established organizations (e.g. World Health Organization (WHO), Centers for Disease Control and Prevention (CDC), World Bank, and various national censuses).  The challenge therefore is to infer what the original data could have been given summarized information.  We present an R package that reverse engineers decoupled and/or censored data with two main functions.  The cnbinom.pars function estimates the average and dispersion parameter of a censored univariate frequency table.  The rec function reverse engineers summarized data into an uncensored bivariate table of probabilities.
 
 **It is highly recommended for a user to read the vignettes for more information about the methodology of both functions.**     
         
@@ -42,7 +42,7 @@ rec(X, Y, Xlowerbound, Xupperbound, Ylowerbound, Yupperbound,
 
 * **Y** - Same description as X but this argument is for the Y variable.  X defaults to NULL if Y argument is a censored contingency table.
 
-* **Xlowerbound** - A numeric class value to represent the left bound for X (row in contingency table).  The value must strictly be a non-negative integer and cannot be greater than the lowest category/average value provided for X (e.g. the lower bound cannot be 6 if a table has '>= 5' as a X or row category). 
+* **Xlowerbound** - A numeric class value to represent the left bound for X (row in contingency table).  The value must strictly be a non-negative integer and cannot be greater than the lowest category/average value provided for X (e.g. the lower bound cannot be 6 if a table has '< 5' as a X or row category). 
 
 * **Xupperbound** - A numeric class value to represent the right bound for X (row in contingency table).  The value must strictly be a non-negative integer and cannot be less than the highest category/average value provided for X (e.g. the upper bound cannot be 90 if a table has '> 100' as a X or row category).
 
@@ -50,7 +50,7 @@ rec(X, Y, Xlowerbound, Xupperbound, Ylowerbound, Yupperbound,
 
 * **Yupperbound** - Same description as Xupperbound but this argument is for Y (column in contingency table). 
 
-* **seed.matrix** - An intial probability matrix to be updated.  If decoupled variables is provided the default is a Xlowerbound:Xupperbound by Ylowerbound:Yupperbound seed.matrix with interior cells of 1 / sum(seed.matrix).  If a censored contingency table is provided the default is the seedmatrix()$Probabilities output.
+* **seed.matrix** - An initial probability matrix to be updated.  If decoupled variables is provided the default is a Xlowerbound:Xupperbound by Ylowerbound:Yupperbound matrix with interior cells of 1, which are then converted to probabilities.  If a censored contingency table is provided the default is the seedmatrix()\$Probabilities output.
 
 * **seed.estimation.method** - A character string indicating which method is used for updating the seed.matrix. The choices are: "ipfp", "ml", "chi2", or "lsq". Default is "ipfp".  
 
@@ -102,7 +102,7 @@ contingencytable<-matrix(c(18, 13, 7, 19, 8, 5, 8, 12, 10), nrow = 3, ncol = 3)
 ## Examples of Applying functions to Census Data
 
 ### Nepal
-A Nepal Living Standards Survey [1] provides a censored table and average for urban household size. Using the censored table, the cnbinom.pars() function calculates a close approximation to the provided average household size (4.4 people).
+A Nepal Living Standards Survey [1] provides a censored table and average for urban household size. Using the censored table, the cnbinom.pars function calculates a close approximation to the provided average household size (4.4 people).
 
 ```
 # revengc has the Nepal houshold table preloaded as univariatetable.csv   
@@ -110,7 +110,7 @@ cnbinom.pars(censoredtable = univariatetable.csv)
 ```
 
 ### Indonesia
-In 2010, the Population Census Data - Statistics Indonesia provided over 60 censored contingency tables containing Floor Area of Dwelling Unit (square meter) by Household Member Size. The tables are separated by province, urban, and rural.  Here we use the household size by area contingency table for Indonesia's rural Aceh Province to show the multiple coding steps and functions implemented inside rec().  This allows the user to see a methodology workflow in code form.  The final uncensored household size by area estimated probability table, which implemented the "ipfp" method and default seed matrix, has rows ranging from 1 (Xlowerbound) to 15 (Xupperbound) people and columns ranging from 10 (Ylowerbound) to 310 (Yupperbound) square meters. 
+In 2010, the Population Census Data - Statistics Indonesia provided over 60 censored contingency tables containing Floor Area of Dwelling Unit (square meter) by Household Member Size. The tables are separated by province, urban, and rural.  Here we use the household size by area contingency table for Indonesia's rural Aceh Province to show the multiple coding steps and functions implemented inside rec.  This allows the user to see a methodology workflow in code form.  The final uncensored household size by area estimated probability table, which implemented the "ipfp" method and default seed matrix, has rows ranging from 1 (Xlowerbound) to 15 (Xupperbound) people and columns ranging from 10 (Ylowerbound) to 310 (Yupperbound) square meters. 
 
 
 

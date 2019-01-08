@@ -12,7 +12,7 @@ rec(X, Y, Xlowerbound, Xupperbound, Ylowerbound, Yupperbound,
 
 \item{Y}{Same description as X but this argument is for the Y variable.  X defaults to NULL if Y argument is a censored contingency table.}
 
-\item{Xlowerbound}{A numeric class value to represent the left bound for X (row in contingency table).  The value must strictly be a non-negative integer and cannot be greater than the lowest category/average value provided for X (e.g. the lower bound cannot be 6 if a table has '>= 5' as a X or row category).} 
+\item{Xlowerbound}{A numeric class value to represent the left bound for X (row in contingency table).  The value must strictly be a non-negative integer and cannot be greater than the lowest category/average value provided for X (e.g. the lower bound cannot be 6 if a table has '< 5' as a X or row category).} 
 
 \item{Xupperbound}{A numeric class value to represent the right bound for X (row in contingency table).  The value cannot be less than the highest category/average value provided for X (e.g. the upper bound cannot be 90 if a table has '> 100' as a X or row category).}
 
@@ -20,7 +20,7 @@ rec(X, Y, Xlowerbound, Xupperbound, Ylowerbound, Yupperbound,
 
 \item{Yupperbound}{Same description as Xupperbound but this argument is for Y (column in contingency table).} 
 
-\item{seed.matrix}{An intial probability matrix to be updated.  If decoupled variables is provided the default is a Xlowerbound:Xupperbound by Ylowerbound:Yupperbound seed.matrix with interior cells of 1 / sum(seed.matrix).  If a censored contingency table is provided the default is the seedmatrix()$Probabilities output.}
+\item{seed.matrix}{An initial probability matrix to be updated.  If decoupled variables is provided the default is a Xlowerbound:Xupperbound by Ylowerbound:Yupperbound matrix with interior cells of 1, which are then converted to probabilities.  If a censored contingency table is provided the default is the seedmatrix()\$Probabilities output.}
 
 \item{seed.estimation.method}{A character string indicating which method is used for updating the seed.matrix. The choices are: "ipfp", "ml", "chi2", or "lsq". Default is "ipfp".}  
 

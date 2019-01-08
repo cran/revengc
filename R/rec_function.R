@@ -6,6 +6,7 @@ source("R/cnbinom.pars_function.R")
 source("R/seedmatrix_function.R")
 source("R/reweight.contingencytable.R")
 source("R/reweight.univariatetable.R")
+source("R/format_data_for_functions.R")
 
 
  rec<-function (X = NULL, Y = NULL, Xlowerbound, Xupperbound, Ylowerbound, Yupperbound, 
@@ -135,9 +136,9 @@ source("R/reweight.univariatetable.R")
       inside<-str_replace_all(Inside,",","")
       suminside<-sum(as.numeric(inside))
       
-      if(isFALSE(all.equal(sumx,sumy)) ) stop ('Margins are not equal.')
-      if(isFALSE(all.equal(sumx,suminside))) stop ('Row margins are not equal to inside of table.')
-      if(isFALSE(all.equal(sumy,suminside))) stop ('Column margins are not equal to inside of table.')
+      if(all.equal(sumx,sumy) == FALSE) stop ('Margins are not equal.')
+      if(all.equal(sumx,suminside) == FALSE)stop ('Row margins are not equal to inside of table.')
+      if(all.equal(sumy,suminside )== FALSE) stop ('Column margins are not equal to inside of table.')
       
       #Negative binomial 
       rowprob<-dtrunc(rowrange, size =rowr, mu = rowmu, spec = "nbinom", a = Xlowerbound - 1, b = Xupperbound)
@@ -174,9 +175,9 @@ source("R/reweight.univariatetable.R")
       inside<-str_replace_all(Inside,",","")
       suminside<-sum(as.numeric(inside))
       
-      if(isFALSE(all.equal(sumx,sumy)) ) stop ('Margins are not equal.')
-      if(isFALSE(all.equal(sumx,suminside))) stop ('Row margins are not equal to inside of table.')
-      if(isFALSE(all.equal(sumy,suminside))) stop ('Column margins are not equal to inside of table.')
+      if(all.equal(sumx,sumy) ==FALSE ) stop ('Margins are not equal.')
+      if(all.equal(sumx,suminside)==FALSE ) stop ('Row margins are not equal to inside of table.')
+      if(all.equal(sumy,suminside)==FALSE ) stop ('Column margins are not equal to inside of table.')
       
       #Negative binomial (different ways to calculate it.. )
       rowprob<-dtrunc(rowrange, mu = rowmu, size =rowr, spec = "nbinom", a = Xlowerbound - 1, b = Xupperbound)
@@ -191,8 +192,8 @@ source("R/reweight.univariatetable.R")
     if (colmu <= Ylowerbound) stop ('Check Y (column) inputs. Y average <= Ylowerbound.')
 
     # error if rowmu/colmu > bounds
-    if (rowmu >= Xupperbound) stop ('Check X (row) inputs. X average >= Xlowerbound.')
-    if (colmu >= Yupperbound) stop ('Check Y (column) inputs. Y average >= Ylowerbound.')
+    if (rowmu >= Xupperbound) stop ('Check X (row) inputs. X average >= Xupperbound.')
+    if (colmu >= Yupperbound) stop ('Check Y (column) inputs. Y average >= Yupperbound.')
       
 
     # both marginals == 1
@@ -226,7 +227,7 @@ source("R/reweight.univariatetable.R")
     # case where censored contingency table = Y and seed is provided
     if (is.null(X) && length(Y)>2 && !is.null(seed.matrix)){seedfinal=seed.matrix}  
     
-    if( isFALSE(all.equal(sum(seedfinal), 1))) {
+    if( all.equal(sum(seedfinal), 1) ==FALSE) {
       seedfinal<-seed.matrix/sum(seed.matrix)
       print("seed.matrix was turned to probabilites: seed.matrix/sum(seed.matrix)")
     }
